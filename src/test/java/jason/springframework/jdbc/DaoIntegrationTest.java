@@ -18,9 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 @ActiveProfiles("local")
 @DataJpaTest
-@ComponentScan(basePackages = {"guru.springframework.jdbc.dao"})
+@ComponentScan(basePackages = {"jason.springframework.jdbc.dao"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class DaoIntegrationTest {
+
     @Autowired
     AuthorDao authorDao;
 
@@ -143,9 +144,9 @@ public class DaoIntegrationTest {
     @Test
     void testGetAuthor() {
 
-        Author author = authorDao.getById(1L);
+      Author author = authorDao.getById(1L);
 
-        assertThat(author).isNotNull();
+      assertThat(author).isNotNull();
 
     }
 }
