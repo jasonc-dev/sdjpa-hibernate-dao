@@ -14,9 +14,12 @@ public interface BookDao {
 
     Book findBookByTitle(String title);
 
+    Book findBookByTitleCriteria(String title);
+
     Book saveNewBook(Book book);
 
     Book updateBook(Book book);
 
     void deleteBookById(Long id);
+
 }
