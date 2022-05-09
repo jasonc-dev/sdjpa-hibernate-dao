@@ -16,10 +16,11 @@ public interface BookDao {
 
     Book findBookByTitleCriteria(String title);
 
+    Book findBookByTitleNative(String title);
+
     Book saveNewBook(Book book);
 
     Book updateBook(Book book);
 
     void deleteBookById(Long id);
-
 }
