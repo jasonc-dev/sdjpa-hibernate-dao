@@ -32,11 +32,11 @@ public class DaoIntegrationTest {
     BookDao bookDao;
 
     @Test
-    void testFindAllAuthors() {
-        List<Author> authors = authorDao.findAll();
+    void testFindAllBooks() {
+        List<Book> books = bookDao.findAll();
 
-        assertThat(authors).isNotNull();
-        assertThat(authors.size()).isGreaterThan(0);
+        assertThat(books).isNotNull();
+        assertThat(books.size()).isGreaterThan(0);
     }
 
     @Test
@@ -109,10 +109,17 @@ public class DaoIntegrationTest {
     }
 
     @Test
-    void testGetBookByName() {
-        Book book = bookDao.findBookByTitle("Clean Code");
+    void testFindBookByTitle() {
+        Book book = new Book();
+        book.setIsbn("12345" + RandomString.make());
+        book.setTitle("TITLETEST2");
 
-        assertThat(book).isNotNull();
+        Book saved = bookDao.saveNewBook(book);
+
+        Book fetched = bookDao.findBookByTitle(book.getTitle());
+        assertThat(fetched).isNotNull();
+
+        bookDao.deleteBookById(saved.getId());
     }
 
     @Test
@@ -120,6 +127,14 @@ public class DaoIntegrationTest {
         Book book = bookDao.getById(3L);
 
         assertThat(book.getId()).isNotNull();
+    }
+
+    @Test
+    void testFindAllAuthors() {
+        List<Author> authors = authorDao.findAll();
+
+        assertThat(authors).isNotNull();
+        assertThat(authors.size()).isGreaterThan(0);
     }
 
     @Test
